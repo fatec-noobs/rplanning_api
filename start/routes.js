@@ -27,3 +27,9 @@ Route.group(() => {
     .except('update');
 })
 
+Route.group(() => {
+  Route
+    .resource('materials', 'MaterialController')
+    .apiOnly()
+    .except('update');
+})
