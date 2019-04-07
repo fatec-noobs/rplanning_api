@@ -19,3 +19,11 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+
+Route.group(() => {
+  Route
+    .resource('services', 'ServiceController')
+    .apiOnly()
+    .except('update');
+})
+
