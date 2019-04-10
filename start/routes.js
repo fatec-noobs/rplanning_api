@@ -33,3 +33,11 @@ Route.group(() => {
     .apiOnly()
     .except('update');
 })
+
+Route.group(() => {
+  Route
+    .resource('clients', 'ClientController')
+    .apiOnly()
+    .except('update');
+})
+
