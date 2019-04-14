@@ -41,3 +41,11 @@ Route.group(() => {
     .except('update');
 })
 
+Route.group(() => {
+  Route
+    .resource('addresses', 'AddressController')
+    .apiOnly()
+    .except('update');
+})
+
+
