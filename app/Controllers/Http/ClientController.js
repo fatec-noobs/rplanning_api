@@ -5,6 +5,7 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const Client = use('App/Models/Client');
+const Address = use('App/Models/Address');
 
 /**
  * Resourceful controller for interacting with clients
@@ -46,6 +47,12 @@ class ClientController {
    */
   async store ({ request, response }) {
     const content = request.only(['content']).content;
+
+    const addressContent = content.address
+    const address = await Address.create({ ...addressContent });
+
+    delete content.address;
+    content.addressId = address.id;
     const client = await Client.create({ ...content });
     return client;
   }
