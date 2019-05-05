@@ -8,8 +8,8 @@ class MaterialSchema extends Schema {
     this.create('materials', (table) => {
       table.increments()
       table.string('description')
-      table.string('unitType')
-      table.float('unitPrice')
+      table.string('unit_type')
+      table.float('unit_price')
       table.timestamps()
     })
   }

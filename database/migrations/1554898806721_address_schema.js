@@ -8,7 +8,7 @@ class AddressSchema extends Schema {
     this.create('addresses', (table) => {
       table.increments()
       table.string('cep')
-      table.string('publicPlace')
+      table.string('public_place')
       table.string('number')
       table.string('complement')
       table.string('neighborhood')

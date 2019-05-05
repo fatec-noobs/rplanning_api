@@ -8,8 +8,8 @@ class ServiceSchema extends Schema {
     this.create('services', (table) => {
       table.increments()
       table.string('description')
-      table.string('unitType')
-      table.float('unitPrice')
+      table.string('unit_type')
+      table.float('unit_price')
       table.timestamps()
     })
   }

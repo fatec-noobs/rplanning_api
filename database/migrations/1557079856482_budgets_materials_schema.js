@@ -8,22 +8,22 @@ class BudgetsMaterialsSchema extends Schema {
     this.create('budgets_materials', (table) => {
       table.increments()
       table
-        .integer('budgetId')
+        .integer('budget_id')
         .unsigned()
 
       table
-        .integer('materialId')
+        .integer('material_id')
         .unsigned()
 
       table.integer('amount')
 
       table
-        .foreign('budgetId')
+        .foreign('budget_id')
         .references('budgets.id')
         .onDelete('cascade')
 
       table
-        .foreign('materialId')
+        .foreign('material_id')
         .references('materials.id')
         .onDelete('cascade')
       table.timestamps()

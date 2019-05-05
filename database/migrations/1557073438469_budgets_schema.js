@@ -7,11 +7,11 @@ class BudgetsSchema extends Schema {
   up () {
     this.create('budgets', (table) => {
       table.increments()
-      table.integer('clientId')
+      table.integer('client_id')
       table.integer('value')
 
       table
-        .foreign('clientId')
+        .foreign('client_id')
         .references('clients.id')
         .onDelete('cascade')
 

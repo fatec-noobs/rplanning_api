@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Address extends Model {
+  client() {
+    return this.hasOne('App/Models/Client')
+  }
 }
 
 module.exports = Address

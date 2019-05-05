@@ -7,6 +7,10 @@ class Client extends Model {
   budget() {
     return this.hasOne('App/Models/Budget')
   }
+
+  address() {
+    return this.belongsTo('App/Models/Address')
+  }
 }
 
 module.exports = Client
