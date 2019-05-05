@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Client extends Model {
+  budget() {
+    return this.hasOne('App/Models/Budget')
+  }
 }
 
 module.exports = Client
