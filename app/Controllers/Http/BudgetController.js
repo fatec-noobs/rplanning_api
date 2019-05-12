@@ -1,92 +1,27 @@
 'use strict'
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
+const Budget = use('App/Models/Budget');
 
-/**
- * Resourceful controller for interacting with budgets
- */
 class BudgetController {
-  /**
-   * Show a list of all budgets.
-   * GET budgets
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
   async index ({ request, response, view }) {
+    const budgets = await Budget.all();
+    return budgets;
   }
 
-  /**
-   * Render a form to be used for creating a new budget.
-   * GET budgets/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
-  }
-
-  /**
-   * Create/save a new budget.
-   * POST budgets
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
   async store ({ request, response }) {
+    const content = request.only(['content']).content;
+    const budgets = await Budget.create({ ...content });
+    return budgets;
   }
 
-  /**
-   * Display a single budget.
-   * GET budgets/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
   async show ({ params, request, response, view }) {
+    const budget = await Budget.findOrFail(params.id)
+    return budget;
   }
 
-  /**
-   * Render a form to update an existing budget.
-   * GET budgets/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
-
-  /**
-   * Update budget details.
-   * PUT or PATCH budgets/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
-
-  /**
-   * Delete a budget with id.
-   * DELETE budgets/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
   async destroy ({ params, request, response }) {
+    const budget = await Budget.findOrFail(params.id)
+    await budget.delete();
   }
 }
 
