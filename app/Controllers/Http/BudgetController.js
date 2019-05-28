@@ -1,6 +1,8 @@
 'use strict'
 
 const Budget = use('App/Models/Budget');
+const Service = use('App/Models/Service');
+const Material = use('App/Models/Material');
 
 class BudgetController {
   async index ({ request, response, view }) {
@@ -10,8 +12,22 @@ class BudgetController {
 
   async store ({ request, response }) {
     const content = request.only(['content']).content;
-    const budgets = await Budget.create({ ...content });
-    return budgets;
+    const materials_id = content.materials_id;
+    const services_id = content.services_id;
+
+    delete content.materials_id;
+    delete content.services_id;
+
+    const service_promises = services_id.map(id => Service.findOrFail(id));
+    const services = await Promise.all(service_promises);
+
+    const material_promises = materials_id.map(id => Material.findOrFail(id));
+    const materials = await Promise.all(material_promises);
+
+    delete content.materials;
+    delete content.services;
+    
+    const budget = await Budget.create({ ...content });
   }
 
   async show ({ params, request, response, view }) {

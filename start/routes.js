@@ -48,4 +48,10 @@ Route.group(() => {
     .except('update');
 })
 
+Route.group(() => {
+  Route
+    .resource('budgets', 'BudgetController')
+    .apiOnly()
+    .except('update');
+})
 
